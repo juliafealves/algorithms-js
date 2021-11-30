@@ -11,36 +11,40 @@ process.stdin.on('end', () => {
     main();
 });
 
-function readline() {
+function print(message) {
+    console.log(message);
+}
+
+function readLine() {
     return inputString[currentLine++];
 }
 
 function main() {
-    const quantidadeTestes = parseInt(readline());
+    const tests = parseInt(readLine());
 
-    for (let i = 0; i < quantidadeTestes; i++) {
-        const tamanhoString = parseInt(readline());
-        const string = readline();
-        const questoes = {};
-        let fezCerto = true;
+    for (let t = 0; t < tests; t++) {
+        const size = parseInt(readLine());
+        const string = readLine();
+        const questions = {};
+        let isRight = true;
 
-        for (let l = 0; l < tamanhoString; l++) {
-            let letra = string[l];
+        for (let l = 0; l < size; l++) {
+            let letter = string[l];
 
-            if(questoes.hasOwnProperty(letra)) {
-                if(l - questoes[letra] > 1) {
-                    console.log("NO");
-                    fezCerto = false;
+            if(questions.hasOwnProperty(letter)) {
+                if(l - questions[letter] > 1) {
+                    print("NO");
+                    isRight = false;
                     break;
                 }
-                questoes[letra] = l;
+                questions[letter] = l;
             } else {
-                questoes[letra] = l;
+                questions[letter] = l;
             }
         }
 
-        if(fezCerto) {
-            console.log("YES");
+        if(isRight) {
+            print("YES");
         }
     }
 }
