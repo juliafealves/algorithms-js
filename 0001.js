@@ -19,27 +19,33 @@ function readLine() {
     return inputString[currentLine++];
 }
 
+function readLineNumber(parse = parseInt) {
+    return parse(readLine());
+}
+
 function main() {
-    const tests = parseInt(readLine());
+    // 1 <= t <= 1000
+    const tests = readLineNumber();
 
     for (let t = 0; t < tests; t++) {
-        const size = parseInt(readLine());
+        // 1 <= n <= 50
+        const days = readLineNumber();
         const string = readLine();
         const questions = {};
         let isRight = true;
 
-        for (let l = 0; l < size; l++) {
-            let letter = string[l];
+        for (let d = 0; d < days; d++) {
+            let letter = string[d];
 
             if(questions.hasOwnProperty(letter)) {
-                if(l - questions[letter] > 1) {
+                if(d - questions[letter] > 1) {
                     print("NO");
                     isRight = false;
                     break;
                 }
-                questions[letter] = l;
+                questions[letter] = d;
             } else {
-                questions[letter] = l;
+                questions[letter] = d;
             }
         }
 

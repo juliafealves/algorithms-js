@@ -23,6 +23,10 @@ function readElements(parse = parseInt, separator = ' ') {
     return readLine().split(separator).map(input => parse ? parse(input) : input);
 }
 
+function readLineNumber(parse = parseInt) {
+    return parse(readLine());
+}
+
 function main() {
 
 }
